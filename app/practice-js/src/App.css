@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Arima:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+/* variables */
+:root {
+  --primary-color: blue;
+  --secondary-color: red;
+  --active: lightblue;
+  --general-padding: 1.2em;
+}
+
+/* general styling for the body/app? */
+
+body * {
+  /* border: 0.5px solid red; */
+  /* box-sizing: border-box; */
+}
+
+body > * {
+  border-radius: 10px;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-size: 16px;
+  font-family: Arima;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+}
+
+/* sidebar */
+.sidebar {
+  border: 1px solid black;
+  width: 30%;
+  height: 100vh;
+}
+
+.practice-session-list {
+  height: 100vh;
+  overflow-y: scroll;
+  scrollbar-color: blue orange;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar-session-title {
+  cursor: pointer;
+}
+
+.session-sidebar {
+  padding: 1%;
+  margin-top: 2%;
+}
+
+.session-sidebar:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+}
+
+.session-sidebar.active {
+  background-color: var(--active);
+}
+
+/* sessions */
+
+.session {
+  width: 100%;
+}
+
+.session-edit {
+  border: 1px black;
+}
+
+.session-not-active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-size: xx-large;
+  opacity: 30%;
+}
+
+/* buttons! */
+button,
+.btn {
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 5px;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--primary-color);
+  border-radius: 7px;
+  background: aliceblue;
+  border: aliceblue;
+}
+
+button:hover,
+.btn:hover {
+  color: var(--secondary-color);
+}
+
+.btn-grp {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* stopwatch */
+
+.stop-watch {
+  border-radius: 12px;
+  width: max-content;
+  margin: 2%;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+}
+
+/* sessions */
+.app-main-note-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.app-main-note-edit * {
+  width: 60%;
+  margin: 2%;
+}
+
+/* audio recorder */
+.audio-recorder {
+  border-radius: 12px;
+  width: max-content;
+  margin: 2%;
+}
+
+.record {
+  color: red;
+}
+
+/* tools */
+.tools {
+  display: flex;
+  flex-direction: row;
+}
