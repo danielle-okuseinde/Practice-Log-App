@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Session from "./Session.js";
 import Sidebar from "./Sidebar.js";
 import uuid from "react-uuid";
+import {stringify} from 'flatted';
 
 function App() {
   const [sessions, setSessions] = useState([]);
@@ -35,7 +36,7 @@ function App() {
       body: "",
       time: null,
       lastModified: Date.now(),
-      recording: [],
+      recording: null,
     };
     await newDb(newSession);
     setSessions([newSession, ...sessions]);
@@ -98,8 +99,6 @@ function App() {
         "Content-Type": "application/json",
       },
     });
-    console.log(result);
-    console.log(typeof session._id);
 
     if (result !== undefined) {
       console.log("Data saved succesfully");

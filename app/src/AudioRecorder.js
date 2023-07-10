@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import MicRecorder from 'mic-recorder-to-mp3';
 import uuid from "react-uuid";
+import Session from './Session';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -32,14 +33,18 @@ class App extends React.Component {
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
-        const blobURL = URL.createObjectURL(blob)
+        const blobURL = URL.createObjectURL(blob);
         this.setState({ blobURL, isRecording: false });
       }).catch((e) => console.log(e));
   };
 
   save = (recording) => {
     this.props.onEditField('recording', [recording, Date.now])
+    // console.log(this.props.session)
+    // this.props.updateDb(this.props.session)
   }
+
+
 
   componentDidMount() {
     navigator.getUserMedia({ audio: true },

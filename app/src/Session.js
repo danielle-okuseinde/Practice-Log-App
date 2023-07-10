@@ -10,11 +10,15 @@ function Session({ activeSession, updateSession, updateDb }) {
     if (key === "title" && value === "") {
       value = "Untitled Practice";
     }
-    updateSession({
+    let newSession = {
       ...activeSession,
       [key]: value,
       lastModified: Date.now(),
-    });
+    };
+    updateSession(newSession);
+    if(key === "time"){
+      updateDb(newSession)
+    }
   };
   if (!activeSession)
     return (
@@ -40,14 +44,13 @@ function Session({ activeSession, updateSession, updateDb }) {
             onChange={(e) => onEditField("body", e.target.value)}
             onBlur={() => updateDb(activeSession)}
           />
+          <i>This app uses markdown.<a className="link" rel="noreferrer" target="_blank" href="https://www.markdownguide.org/basic-syntax/">Access a markdown guide here.</a></i>
+        </div>
+          <div className="tools">
+          <Stopwatch onEditField={onEditField} updateDb={updateDb} />
+          <AudioRecorder onEditField={onEditField} updateDb={updateDb} session={activeSession}></AudioRecorder>
         </div>
       </div>
-      <div className="tools">
-        <Stopwatch onEditField={onEditField} />
-        <AudioRecorder onEditField={onEditField}></AudioRecorder>
-      </div>
-
-      <hr></hr>
 
       <div className="session-preview">
         <h1 className="title-preview">{activeSession.title}</h1>
