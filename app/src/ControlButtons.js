@@ -1,7 +1,9 @@
 import './App.css';
 function ControlButtons({active, isPaused, handleStart, handleReset, handlePauseResume, onSave}) {
     const startButton = (
-        <div className="btn btn-one btn-start" onClick={handleStart}>Start</div>
+      <div className='btn-grp'>
+         <div className="btn btn-one btn-start" onClick={handleStart}>Start</div>
+      </div>
     );
     const activeButtons = (
         <div className="btn-grp">

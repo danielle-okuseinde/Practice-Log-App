@@ -31,6 +31,7 @@ function Session({ activeSession, updateSession, updateDb }) {
       <div className="session-edit">
         <div className="app-main-note-edit">
           <input
+            className="title-input"
             type="text"
             value={activeSession.title}
             onChange={(e) => onEditField("title", e.target.value)}

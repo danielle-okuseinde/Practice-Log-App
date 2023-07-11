@@ -40,8 +40,8 @@ class App extends React.Component {
 
   save = (recording) => {
     this.props.onEditField('recording', [recording, Date.now])
-    // console.log(this.props.session)
-    // this.props.updateDb(this.props.session)
+    console.log(this.props.session)
+    this.props.updateDb(this.props.session)
   }
 
 
@@ -63,21 +63,21 @@ class App extends React.Component {
     if(this.state.isRecording) {
       return (
         <div className="audio-recorder">
-          <header className="App-header">
-            <button className="record" onClick={this.start} disabled={this.state.isRecording}>Recording</button>
-            <button onClick={this.stop} disabled={!this.state.isRecording}>Stop</button>
-            <audio src={this.state.blobURL} controls="controls" />
-          </header>
+            <audio src={this.state.blobURL} controls={true}/>
+            <div className='btn-grp'>
+              <button className="record" onClick={this.start} disabled={this.state.isRecording}>Recording</button>
+              <button onClick={this.stop} disabled={!this.state.isRecording}>Stop</button>
+            </div>
         </div>
       );
     } else {
       return (
         <div className="audio-recorder">
-          <header className="App-header">
-            <button onClick={this.start} disabled={this.state.isRecording}>Record</button>
-            <button onClick={this.save} disabled={this.state.isRecording}>Save</button>
-            <audio src={this.state.blobURL} controls="controls" />
-          </header>
+            <audio className='audio' src={this.state.blobURL} controls={true}/>
+            <div className='btn-grp'>
+              <button onClick={this.start} disabled={this.state.isRecording}>Record</button>
+              <button onClick={this.save} disabled={this.state.isRecording}>Save</button>
+            </div>
         </div>
       );
     }
