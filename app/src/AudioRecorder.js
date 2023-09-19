@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import {useState} from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 import uuid from "react-uuid";
 import Session from './Session';
@@ -11,7 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isRecording: false,
-      blobURL: '',
+      blob: null,
       isBlocked: false,
     };
   }
@@ -33,14 +34,17 @@ class App extends React.Component {
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
-        const blobURL = URL.createObjectURL(blob);
-        this.setState({ blobURL, isRecording: false });
+        const audio_file = new File(buffer, 'me-at-thevoice.mp3', {
+          type: blob.type,
+          lastModified: Date.now()
+        })
+        this.setState({...this.state, blob: blob, isRecording: false});
+        console.log(this.state)
       }).catch((e) => console.log(e));
   };
 
-  save = (recording) => {
-    this.props.onEditField('recording', [recording, Date.now])
-    console.log(this.props.session)
+  save = () => {
+    this.props.onEditField('recording', this.state.file)
     this.props.updateDb(this.props.session)
   }
 
